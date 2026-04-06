@@ -16,6 +16,7 @@ dependencies = [
   "azure-devops>=7.1.0b4",
   "azure-identity>=1.18.0",
   "mcp>=1.9.0",
+  "python-dotenv>=1.0.1",
 ]
 
 [project.optional-dependencies]

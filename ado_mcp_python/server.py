@@ -3,10 +3,12 @@ from __future__ import annotations
 import logging
 
 from mcp.server.fastmcp import FastMCP
+from dotenv import load_dotenv
 
 from .ado_client import AzureDevOpsClients
 from .auth import AuthError, TokenProvider
 from .config import parse_args
+from .tls import enable_system_ssl_trust
 from .tools_core import register_core_tools, register_mcp_apps_tools
 from .tools_pipelines import register_pipeline_tools
 from .tools_repositories import register_repository_tools
@@ -30,6 +32,8 @@ def _configure_tools(mcp: FastMCP, clients: AzureDevOpsClients, enabled_domains:
 
 
 def main() -> None:
+    load_dotenv()
+    enable_system_ssl_trust()
     config = parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")

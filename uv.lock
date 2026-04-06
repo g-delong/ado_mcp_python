@@ -67,6 +67,7 @@ dependencies = [
     { name = "azure-devops" },
     { name = "azure-identity" },
     { name = "mcp" },
+    { name = "python-dotenv" },
 ]
 
 [package.optional-dependencies]
@@ -87,6 +88,7 @@ requires-dist = [
     { name = "azure-identity", specifier = ">=1.18.0" },
     { name = "mcp", specifier = ">=1.9.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.3.0" },
+    { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.8.0" },
 ]
 provides-extras = ["dev"]

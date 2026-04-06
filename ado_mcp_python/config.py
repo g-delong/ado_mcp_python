@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 from dataclasses import dataclass
 
 from .domains import resolve_enabled_domains
@@ -26,7 +27,7 @@ def parse_args(argv: list[str] | None = None) -> ServerConfig:
         prog="mcp-server-azuredevops-python",
         description="Azure DevOps MCP Server (Python)",
     )
-    parser.add_argument("organization", help="Azure DevOps organization name")
+    parser.add_argument("organization", nargs="?", help="Azure DevOps organization name")
     parser.add_argument(
         "-d",
         "--domains",
@@ -49,10 +50,14 @@ def parse_args(argv: list[str] | None = None) -> ServerConfig:
     )
 
     ns = parser.parse_args(argv)
+    organization = ns.organization or os.getenv("ADO_ORG")
+    if not organization:
+        parser.error("organization is required (pass it as an argument or set ADO_ORG in environment/.env)")
+
     enabled_domains = resolve_enabled_domains(ns.domains)
 
     return ServerConfig(
-        organization=ns.organization,
+        organization=organization,
         authentication=ns.authentication,
         tenant=ns.tenant,
         enabled_domains=enabled_domains,
