@@ -12,6 +12,7 @@ from .tls import enable_system_ssl_trust
 from .tools_core import register_core_tools, register_mcp_apps_tools
 from .tools_pipelines import register_pipeline_tools
 from .tools_repositories import register_repository_tools
+from .tools_work import register_work_tools
 from .tools_work_items import register_work_item_tools
 
 
@@ -27,6 +28,8 @@ def _configure_tools(mcp: FastMCP, clients: AzureDevOpsClients, enabled_domains:
         register_repository_tools(mcp, clients)
     if "work-items" in enabled_domains:
         register_work_item_tools(mcp, clients)
+    if "work" in enabled_domains:
+        register_work_tools(mcp, clients)
     if "pipelines" in enabled_domains:
         register_pipeline_tools(mcp, clients)
 

@@ -12,6 +12,7 @@ https://github.com/microsoft/azure-devops-mcp
   - `mcp-apps`
   - `core`
   - `repositories`
+  - `work`
   - `work-items`
   - `pipelines`
 - Test status: `uv run pytest -q` is green in this repo
@@ -141,6 +142,17 @@ $env:UV_NO_SYNC='1'; uv run python scripts/smoke_test_pat.py
 - `wit_add_artifact_link`
 - `wit_get_work_item_attachment`
 
+### work
+
+- `work_list_team_iterations`
+- `work_list_iterations`
+- `work_create_iterations`
+- `work_assign_iterations`
+- `work_get_team_capacity`
+- `work_update_team_capacity`
+- `work_get_iteration_capacities`
+- `work_get_team_settings`
+
 ### pipelines
 
 - `pipelines_get_builds`
@@ -170,7 +182,6 @@ $env:UV_NO_SYNC='1'; uv run python scripts/smoke_test_pat.py
 
 Not implemented yet:
 
-- `work`
 - `wiki`
 - `search`
 - `test-plans`
