@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "azure-devops-mcp-python"
+version = "0.1.0"
+description = "Python reimplementation of the Azure DevOps MCP server"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Azure DevOps MCP Python" }
+]
+dependencies = [
+  "azure-devops>=7.1.0b4",
+  "azure-identity>=1.18.0",
+  "mcp>=1.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0",
+  "ruff>=0.8.0",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3.0",
+  "ruff>=0.8.0",
+]
+
+[project.scripts]
+mcp-server-azuredevops-python = "ado_mcp_python.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["ado_mcp_python"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
