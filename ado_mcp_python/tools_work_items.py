@@ -356,7 +356,9 @@ def register_work_item_tools(mcp: FastMCP, clients: AzureDevOpsClients) -> None:
         responseType: str = "full",
     ) -> dict[str, Any]:
         wit_client = clients.work_item_tracking()
-        team_context = {"project": project, "team": team}
+        # Azure DevOps SDK expects team_context=None for project-level queries
+        # Passing a dict causes AttributeError when SDK tries to access .project_id
+        team_context = None
         query_result = _safe_getattr_call(wit_client, "query_by_id", id, team_context, timePrecision, top)
         result_data = to_primitive(query_result)
 
