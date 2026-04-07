@@ -345,12 +345,10 @@ def register_work_item_tools(mcp: FastMCP, clients: AzureDevOpsClients) -> None:
 
     @mcp.tool(
         name="wit_get_query_results_by_id",
-        description="Retrieve query results by query ID. Supports full or IDs-only response.",
+        description="Execute a saved Azure DevOps query by its ID (GUID). Returns work items matching the query. Only requires the query ID - do not pass project or team parameters.",
     )
     def wit_get_query_results_by_id(
         id: str,
-        project: str | None = None,
-        team: str | None = None,
         timePrecision: bool | None = None,
         top: int = 50,
         responseType: str = "full",
